@@ -33,15 +33,14 @@ export default function MessageScreen() {
           <LegendList<MessageType>
             data={messages}
             ListHeaderComponent={<Loading isLoading={isLoadingMore} />}
-            contentContainerStyle={styles.listContent}
             keyExtractor={(item, index) => `${item.sent_at}-${index}`}
-            estimatedItemSize={100}
-            onStartReachedThreshold={0.2}
+            onStartReachedThreshold={0.1}
             onStartReached={handleStartReached}
             alignItemsAtEnd
             maintainScrollAtEnd
             maintainVisibleContentPosition
             initialScrollIndex={messages.length - 1}
+            maintainScrollAtEndThreshold={0.1}
             recycleItems
             renderItem={({ item }) => <MessageBubble message={item} />}
           />
@@ -62,9 +61,5 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-  },
-  listContent: {
-    paddingBottom: 10,
-    flexGrow: 1,
   },
 });
